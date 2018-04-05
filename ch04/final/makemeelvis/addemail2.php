@@ -25,7 +25,7 @@
     }
   }
   else {
-    $output_form = 'yes';
+    $output_form = 'no';
   }
 
   if (!empty($nombre) && !empty($apellido) && !empty($email)) {
@@ -46,11 +46,11 @@
 
   <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
     <label for="firstname">Nombre:</label>
-    <input type="text" id="firstname" name="nombre" /><br />
+    <input type="text" id="firstname" name="nombre" value="<?php $nombre; ?>"/><br />
     <label for="lastname">Apellido:</label>
-    <input type="text" id="lastname" name="apellido" /><br />
+    <input type="text" id="lastname" name="apellido" value="<?php $apellido; ?>"/><br />
     <label for="email">Email:</label>
-    <input type="text" id="email" name="email" /><br />
+    <input type="text" id="email" name="email" value="<?php $email ?>"/><br />
     <input type="submit" name="submit" value="Enviar" />
   </form>
 

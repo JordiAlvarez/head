@@ -27,7 +27,7 @@
     $msg = "Dear $first_name $last_name,\n$text";
     mail($to, $subject, $msg, 'From:' . $from);
     echo 'Email sent to: ' . $to . '<br />';
-  } 
+  }
 
   mysqli_close($dbc);
 ?>
