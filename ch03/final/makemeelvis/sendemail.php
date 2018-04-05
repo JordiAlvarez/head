@@ -9,25 +9,25 @@
 <body>
 
 <?php
-  $from = 'elmer@makemeelvis.com';
-  $subject = $_POST['subject'];
-  $text = $_POST['elvismail'];
+  $from = 'profepielagos@gmail.com';
+  $asunto = $_POST['asunto'];
+  $mensaje = $_POST['mensaje'];
 
-  $dbc = mysqli_connect('data.makemeelvis.com', 'elmer', 'theking', 'elvis_store')
+  $dbc = mysqli_connect('localhost', 'root', '', 'basedatos1')
     or die('Error connecting to MySQL server.');
 
-  $query = "SELECT * FROM email_list";
+  $query = "SELECT * FROM lista_emails;
   $result = mysqli_query($dbc, $query)
     or die('Error querying database.');
 
-  while ($row = mysqli_fetch_array($result)){
-    $to = $row['email'];
-    $first_name = $row['first_name'];
-    $last_name = $row['last_name'];
-    $msg = "Dear $first_name $last_name,\n$text";
-    mail($to, $subject, $msg, 'From:' . $from);
+  while ($fila = mysqli_fetch_array($result)){
+    $to = $fila['email'];
+    $first_name = $fila['nombre'];
+    $last_name = $fila['apellido'];
+    $msg = "Estimado $nombre $apellido,\n$mensaje";
+    mail($to, $asunto, $msg, 'From:' . $from);
     echo 'Email sent to: ' . $to . '<br />';
-  } 
+  }
 
   mysqli_close($dbc);
 ?>

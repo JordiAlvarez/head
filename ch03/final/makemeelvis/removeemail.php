@@ -9,16 +9,16 @@
 <body>
 
 <?php
-  $dbc = mysqli_connect('data.makemeelvis.com', 'elmer', 'theking', 'elvis_store')
+  $dbc = mysqli_connect('localhost', 'root', '', 'basedatos1')
     or die('Error connecting to MySQL server.');
 
   $email = $_POST['email'];
 
-  $query = "DELETE FROM email_list WHERE email = '$email'";
+  $query = "DELETE FROM lista_emails WHERE email = '$email'";
   mysqli_query($dbc, $query)
     or die('Error querying database.');
 
-  echo 'Customer removed: ' . $email;
+  echo 'Eliminado el cliente con el email: ' . $email;
 
   mysqli_close($dbc);
 ?>
