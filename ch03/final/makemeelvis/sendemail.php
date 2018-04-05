@@ -16,14 +16,14 @@
   $dbc = mysqli_connect('localhost', 'root', '', 'basedatos1')
     or die('Error connecting to MySQL server.');
 
-  $query = "SELECT * FROM lista_emails;
+  $query = "SELECT * FROM lista_emails";
   $result = mysqli_query($dbc, $query)
     or die('Error querying database.');
 
   while ($fila = mysqli_fetch_array($result)){
     $to = $fila['email'];
-    $first_name = $fila['nombre'];
-    $last_name = $fila['apellido'];
+    $nombre = $fila['nombre'];
+    $apellido = $fila['apellido'];
     $msg = "Estimado $nombre $apellido,\n$mensaje";
     mail($to, $asunto, $msg, 'From:' . $from);
     echo 'Email sent to: ' . $to . '<br />';
