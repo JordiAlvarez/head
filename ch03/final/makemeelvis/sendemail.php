@@ -26,7 +26,7 @@
     $apellido = $fila['apellido'];
     $msg = "Estimado $nombre $apellido,\n$mensaje";
     mail($to, $asunto, $msg, 'From:' . $from);
-    echo 'Email sent to: ' . $to . '<br />';
+    echo 'Enviado email a: ' . $to . '<br />';
   }
 
   mysqli_close($dbc);
