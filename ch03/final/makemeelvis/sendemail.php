@@ -9,7 +9,7 @@
 <body>
 
 <?php
-  $from = 'profepielagos@gmail.com';
+  $from = "profepielagos@gmail.com";
   $asunto = $_POST['asunto'];
   $mensaje = $_POST['mensaje'];
 

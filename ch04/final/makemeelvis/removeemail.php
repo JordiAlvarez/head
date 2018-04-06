@@ -3,13 +3,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>Make Me Elvis - Remove Email</title>
+  <title>Make Me Elvis - Borrar emails</title>
   <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
   <img src="blankface.jpg" width="161" height="350" alt="" style="float:right" />
   <img name="elvislogo" src="elvislogo.gif" width="229" height="32" border="0" alt="Make Me Elvis" />
-  <p>Please select the email addresses to delete from the email list and click Remove.</p>
+  <p>Selecciona el correo a borrar y clicka borrar.</p>
   <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 
 <?php
@@ -41,7 +41,7 @@
   mysqli_close($dbc);
 ?>
 
-    <input type="submit" name="submit" value="Remove" />
+    <input type="submit" name="submit" value="Borrar" />
   </form>
 </body>
 </html>

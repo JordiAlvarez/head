@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>Make Me Elvis - Send Email</title>
+  <title>Make Me Elvis - Enviar Email</title>
   <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
@@ -20,18 +20,18 @@ Escribe y envía un correo a los miembros de la lista.</p>
     $output_form = false;
 
     if (empty($asunto) && empty($mensaje)) {
-      // We know both $subject AND $text are blank
-      echo 'You forgot the email subject and body text.<br />';
+      // Sabemos que el asunto y el mensaje están en blanco
+      echo 'Olvidó el asunto y el mensaje.<br />';
       $output_form = true;
     }
 
     if (empty($asunto) && (!empty($mensaje))) {
-      echo 'You forgot the email subject.<br />';
+      echo 'Olvidó el asunto .<br />';
       $output_form = true;
     }
 
     if ((!empty($asunto)) && empty($mensaje)) {
-      echo 'You forgot the email body text.<br />';
+      echo 'Olvidó el mensaje.<br />';
       $output_form = true;
     }
   }
@@ -40,10 +40,10 @@ Escribe y envía un correo a los miembros de la lista.</p>
   }
 
   if ((!empty($asunto)) && (!empty($mensaje))) {
-    $dbc = mysqli_connect('localhost', 'root', 'root', 'basedatos1')
+    $dbc = mysqli_connect('localhost', 'root', '', 'basedatos1')
     or die('Error connecting to MySQL server.');
 
-    $query = "SELECT * FROM email_list";
+    $query = "SELECT * FROM lista_emails";
     $result = mysqli_query($dbc, $query)
       or die('Error querying database.');
 
@@ -60,13 +60,15 @@ Escribe y envía un correo a los miembros de la lista.</p>
   }
 
   if ($output_form) {
-?>
 
+    // Añadimos validaciones isset para colocar los campos que ya han sido rellenados
+
+?>
   <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
     <label for="subject">Asunto:</label><br />
-    <input id="subject" name="asunto" type="text" value="<?php echo $asunto; ?>" size="30" /><br />
+    <input id="subject" name="asunto" type="text" value="<?php if(isset ($_POST['asunto'])) {echo $asunto;}?>" size="30" /><br />
     <label for="elvismail">Mensaje:</label><br />
-    <textarea id="elvismail" name="mensaje" rows="8" cols="40"><?php echo $mensaje; ?></textarea><br />
+    <textarea id="elvismail" name="mensaje" rows="8" cols="40" ><?php if(isset ($_POST['mensaje'])) {echo $mensaje;}?></textarea><br />
     <input type="submit" name="submit" value="Submit" />
   </form>
 
