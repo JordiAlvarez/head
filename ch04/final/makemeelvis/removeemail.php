@@ -13,28 +13,28 @@
   <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 
 <?php
-  $dbc = mysqli_connect('localhost', 'root', 'root', 'basedatos1')
-    or die('Error connecting to MySQL server.');
+  $dbc = mysqli_connect('localhost', 'root', '', 'basedatos1')
+    or die('Error conectando a MySQL server.');
 
-  // Delete the customer rows (only if the form has been submitted)
+  // Borra un cliente de la base de datos solo si ha sido enviado el formulario
   if (isset($_POST['submit'])) {
-    foreach ($_POST['todelete'] as $delete_id) {
-      $query = "DELETE FROM email_list WHERE id = $delete_id";
-      mysqli_query($dbc, $query)
+    foreach ($_POST['todelete'] as $borrar_id) {
+      $consulta = "DELETE FROM lista_emails WHERE id = $borrar_id";
+      mysqli_query($dbc, $consulta)
         or die('Error querying database.');
-    } 
+    }
 
-    echo 'Customer(s) removed.<br />';
+    echo 'Cliente(s) borrados.<br />';
   }
 
-  // Display the customer rows with checkboxes for deleting
-  $query = "SELECT * FROM email_list";
-  $result = mysqli_query($dbc, $query);
-  while ($row = mysqli_fetch_array($result)) {
-    echo '<input type="checkbox" value="' . $row['id'] . '" name="todelete[]" />';
-    echo $row['first_name'];
-    echo ' ' . $row['last_name'];
-    echo ' ' . $row['email'];
+  // Muestra checkboxes que elegir para borrar usuarios
+  $consulta = "SELECT * FROM lista_emails";
+  $resultado = mysqli_query($dbc, $consulta);
+  while ($fila = mysqli_fetch_array($resultado)) {
+    echo '<input type="checkbox" value="' . $fila['id'] . '" name="todelete[]" />';
+    echo $fila['nombre'];
+    echo ' ' . $fila['apellido'];
+    echo ' ' . $fila['email'];
     echo '<br />';
   }
 
