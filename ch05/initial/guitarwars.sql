@@ -1,10 +1,10 @@
 CREATE TABLE `guitarwars` (
   `id` INT AUTO_INCREMENT,
-  `date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  `name` VARCHAR(32),
-  `score` INT,
+  `fecha` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `nombre` VARCHAR(32),
+  `puntos` INT,
   PRIMARY KEY (`id`),
-  KEY `name` (`name`)
+  KEY `name` (`nombre`)
 );
 
 INSERT INTO `guitarwars` VALUES (1, '2008-04-22 14:37:34', 'Paco Jastorius', 127650);

@@ -7,21 +7,21 @@
   <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
-  <h2>Guitar Wars - High Scores</h2>
+  <h2>Guitar Wars - Puntuaciones</h2>
   <p>Welcome, Guitar Warrior, do you have what it takes to crack the high score list? If so, just <a href="addscore.php">add your own score</a>.</p>
   <hr />
 
 <?php
-  // Connect to the database 
+  // Connect to the database
   $dbc = mysqli_connect('www.guitarwars.net', 'admin', 'rockit', 'gwdb');
 
   // Retrieve the score data from MySQL
   $query = "SELECT * FROM guitarwars";
   $data = mysqli_query($dbc, $query);
 
-  // Loop through the array of score data, formatting it as HTML 
+  // Loop through the array of score data, formatting it as HTML
   echo '<table>';
-  while ($row = mysqli_fetch_array($data)) { 
+  while ($row = mysqli_fetch_array($data)) {
     // Display the score data
     echo '<tr><td class="scoreinfo">';
     echo '<span class="score">' . $row['score'] . '</span><br />';
@@ -33,5 +33,5 @@
   mysqli_close($dbc);
 ?>
 
-</body> 
+</body>
 </html>
