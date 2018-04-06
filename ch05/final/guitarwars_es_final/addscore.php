@@ -23,7 +23,7 @@
 
     if (!empty($nombre) && !empty($puntos) && !empty($imagen)) {
       if ((($imagen_type == 'image/gif') || ($imagen_type == 'image/jpeg') || ($imagen_type == 'image/pjpeg') || ($imagen_type == 'image/png'))        && ($screenshot_size > 0) && ($screenshot_size <= GW_MAXFILESIZE)) {
-        if ($_FILES['screenshot']['error'] == 0) {          // Move the file to the target upload folder
+        if ($_FILES['imagen']['error'] == 0) {          // Move the file to the target upload folder
           $target = GW_UPLOADPATH . $screenshot;
           if (move_uploaded_file($_FILES['screenshot']['tmp_name'], $target)) {
             // Connect to the database
