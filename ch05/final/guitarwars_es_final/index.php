@@ -7,35 +7,35 @@
   <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
-  <h2>Guitar Wars - High Scores</h2>
-  <p>Welcome, Guitar Warrior, do you have what it takes to crack the high score list? If so, just <a href="addscore.php">add your own score</a>.</p>
+  <h2>Guitar Wars - Ranking</h2>
+  <p>Bienvenido Guitarrista, tienes lo que hay que tener para ganar?, si es así  <a href="puntuacion.php">añade tu puntuación</a>.</p>
   <hr />
 
 <?php
-  require_once('appvars.php');
+  require_once('constantes.php');
   require_once('connectvars.php');
 
-  // Connect to the database
-  $dbc = mysqli_connect('localhost', 'root','', 'basedatos1'); 
+  // Conectar a la base de datos
+  $dbc = mysqli_connect('localhost', 'root','', 'basedatos1');
 
-  // Retrieve the score data from MySQL
-  $query = "SELECT * FROM guitarwars ORDER BY score DESC, date ASC";
-  $data = mysqli_query($dbc, $query);
+  // Hacer la consulta
+  $consulta = "SELECT * FROM guitarwars ORDER BY puntos DESC, fecha ASC";
+  $resultado = mysqli_query($dbc, $consulta);
 
-  // Loop through the array of score data, formatting it as HTML
+  // Sacar por un bucle los resultados d ela consulta en una tabla
   echo '<table>';
   $i = 0;
-  while ($row = mysqli_fetch_array($data)) {
-    // Display the score data
+  while ($fila = mysqli_fetch_array($resultado)) {
+    // Muestra la puntuación más alta
     if ($i == 0) {
-      echo '<tr><td colspan="2" class="topscoreheader">Top Score: ' . $row['score'] . '</td></tr>';
+      echo '<tr><td colspan="2" class="topscoreheader">Puntuación más alta: ' . $fila['puntos'] . '</td></tr>';
     }
     echo '<tr><td class="scoreinfo">';
-    echo '<span class="score">' . $row['score'] . '</span><br />';
-    echo '<strong>Name:</strong> ' . $row['name'] . '<br />';
-    echo '<strong>Date:</strong> ' . $row['date'] . '</td>';
-    if (is_file(GW_UPLOADPATH . $row['screenshot']) && filesize(GW_UPLOADPATH . $row['screenshot']) > 0) {
-      echo '<td><img src="' . GW_UPLOADPATH . $row['screenshot'] . '" alt="Score image" /></td></tr>';
+    echo '<span class="score">' . $fila['puntos'] . '</span><br />';
+    echo '<strong>Nombre:</strong> ' . $fila['nombre'] . '<br />';
+    echo '<strong>Fecha:</strong> ' . $fila['fecha'] . '</td>';
+    if (is_file(GW_UPLOADPATH . $fila['imagen']) && filesize(GW_UPLOADPATH . $fila['imagen']) > 0) {
+      echo '<td><img src="' . GW_UPLOADPATH . $fila['imagen'] . '" alt="Score image" /></td></tr>';
     }
     else {
       echo '<td><img src="' . GW_UPLOADPATH . 'unverified.gif' . '" alt="Unverified score" /></td></tr>';
