@@ -10,8 +10,8 @@
   <h2>Guitar Wars -Añade tu puntuación</h2>
 
 <?php
-  require_once('appvars.php');
-  require_once('connectvars.php');
+  require_once('constantes.php');
+  require_once('conexion.php');
 
   if (isset($_POST['submit'])) {
     // Grab the score data from the POST
@@ -22,25 +22,25 @@
     $imagen_size = $_FILES['imagen']['size'];
 
     if (!empty($nombre) && !empty($puntos) && !empty($imagen)) {
-      if ((($imagen_type == 'image/gif') || ($imagen_type == 'image/jpeg') || ($imagen_type == 'image/pjpeg') || ($imagen_type == 'image/png'))        && ($screenshot_size > 0) && ($screenshot_size <= GW_MAXFILESIZE)) {
-        if ($_FILES['imagen']['error'] == 0) {          // Move the file to the target upload folder
-          $target = GW_UPLOADPATH . $screenshot;
-          if (move_uploaded_file($_FILES['screenshot']['tmp_name'], $target)) {
-            // Connect to the database
+      if ((($imagen_type == 'image/gif') || ($imagen_type == 'image/jpeg') || ($imagen_type == 'image/jpg') || ($imagen_type == 'image/png'))        && ($imagen_size > 0) && ($imagen_size <= GW_MAXFILESIZE)) {
+        if ($_FILES['imagen']['error'] == 0) {          // No hay errores entonces mueve la imagen a la carpeta
+          $target = GW_UPLOADPATH . $imagen;
+          if (move_uploaded_file($_FILES['imagen']['tmp_name'], $target)) {
+            // Conexión base de datos
             $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
-            // Write the data to the database
-            $query = "INSERT INTO guitarwars VALUES (0, NOW(), '$name', '$score', '$screenshot')";
-            mysqli_query($dbc, $query);
+            // Introduce datos en la base de datos
+            $consulta = "INSERT INTO guitarwars VALUES (0, NOW(), '$nombre', '$puntos', '$imagen')";
+            mysqli_query($dbc, $consulta);
 
             // Confirm success with the user
             echo '<p>Thanks for adding your new high score! It will be reviewed and added to the high score list as soon as possible.</p>';
-            echo '<p><strong>Name:</strong> ' . $name . '<br />';
-            echo '<strong>Score:</strong> ' . $score . '<br />';
-            echo '<img src="' . GW_UPLOADPATH . $screenshot . '" alt="Score image" /></p>';
+            echo '<p><strong>Nombre:</strong> ' . $nombre . '<br />';
+            echo '<strong> Puntos:</strong> ' . $puntos . '<br />';
+            echo '<img src="' . GW_UPLOADPATH . $imagen . '" alt="Score image" /></p>';
             echo '<p><a href="index.php">&lt;&lt; Back to high scores</a></p>';
 
-            // Clear the score data to clear the form
+            // Limpia los datos almacenados para limpiar el formulario
             $name = "";
             $score = "";
             $screenshot = "";

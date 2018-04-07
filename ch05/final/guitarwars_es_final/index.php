@@ -13,7 +13,7 @@
 
 <?php
   require_once('constantes.php');
-  require_once('connectvars.php');
+  require_once('conexion.php');
 
   // Conectar a la base de datos
   $dbc = mysqli_connect('localhost', 'root','', 'basedatos1');
