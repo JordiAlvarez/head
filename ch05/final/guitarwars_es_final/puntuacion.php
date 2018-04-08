@@ -22,9 +22,9 @@
     $imagen_size = $_FILES['imagen']['size'];
 
     if (!empty($nombre) && !empty($puntos) && !empty($imagen)) {
-      if ((($imagen_type == 'image/gif') || ($imagen_type == 'image/jpeg') || ($imagen_type == 'image/jpg') || ($imagen_type == 'image/png'))        && ($imagen_size > 0) && ($imagen_size <= GW_MAXFILESIZE)) {
+      if ((($imagen_type == 'image/gif') || ($imagen_type == 'image/jpeg') || ($imagen_type == 'image/jpg') || ($imagen_type == 'image/png'))        && ($imagen_size > 0) && ($imagen_size <= SIZE)) {
         if ($_FILES['imagen']['error'] == 0) {          // No hay errores entonces mueve la imagen a la carpeta
-          $target = GW_UPLOADPATH . $imagen;
+          $target = CARPETA . $imagen;
           if (move_uploaded_file($_FILES['imagen']['tmp_name'], $target)) {
             // Conexión base de datos
             $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
@@ -37,7 +37,7 @@
             echo '<p>Gracias por añadir tu puntuación en breve te añadiremos al ranking.</p>';
             echo '<p><strong>Nombre:</strong> ' . $nombre . '<br />';
             echo '<strong> Puntos:</strong> ' . $puntos . '<br />';
-            echo '<img src="' . GW_UPLOADPATH . $imagen . '" alt="Score image" /></p>';
+            echo '<img src="' . CARPETA . $imagen . '" alt="Score image" /></p>';
             echo '<p><a href="index.php">&lt;&lt; Volver al Ranking</a></p>';
 
             // Limpia los datos almacenados para limpiar el formulario
@@ -51,7 +51,7 @@
             echo '<p class="error">Sorry, there was a problem uploading your screen shot image.</p>';
           }
         }
-      }      else {        echo '<p class="error">The screen shot must be a GIF, JPEG, or PNG image file no greater than ' . (GW_MAXFILESIZE / 1024) . ' KB in size.</p>';      }
+      }      else {        echo '<p class="error">The screen shot must be a GIF, JPEG, or PNG image file no greater than ' . (SIZE / 1024) . ' KB in size.</p>';      }
 
       // Intenta borrar el archivo temporal de la imagen
       @unlink($_FILES['imagen']['tmp_name']);
@@ -64,7 +64,7 @@
 
   <hr />
   <form enctype="multipart/form-data" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-    <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo GW_MAXFILESIZE; ?>" />
+    <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo SIZE; ?>" />
     <label for="name">Nombre:</label>
     <input type="text" id="name" name="nombre" value="<?php if (!empty($nombre)) echo $nombre; ?>" /><br />
     <label for="score">Puntos:</label>

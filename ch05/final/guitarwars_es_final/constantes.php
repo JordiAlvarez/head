@@ -1,5 +1,5 @@
 <?php
   // Definiendo constantes aplicacion
-  define('GW_UPLOADPATH', 'images/');
-  define('GW_MAXFILESIZE', 32768);      // 32 KB
+  define('CARPETA', 'images/');
+  define('SIZE', 1000000);      // 32 KB
 ?>

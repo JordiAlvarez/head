@@ -16,7 +16,7 @@
   require_once('conexion.php');
 
   // Conectar a la base de datos
-  $dbc = mysqli_connect('localhost', 'root','', 'basedatos1');
+  $dbc = mysqli_connect(DB_HOST, DB_USER,DB_PASSWORD, DB_NAME);
 
   // Hacer la consulta
   $consulta = "SELECT * FROM guitarwars ORDER BY puntos DESC, fecha ASC";
@@ -34,11 +34,11 @@
     echo '<span class="score">' . $fila['puntos'] . '</span><br />';
     echo '<strong>Nombre:</strong> ' . $fila['nombre'] . '<br />';
     echo '<strong>Fecha:</strong> ' . $fila['fecha'] . '</td>';
-    if (is_file(GW_UPLOADPATH . $fila['imagen']) && filesize(GW_UPLOADPATH . $fila['imagen']) > 0) {
-      echo '<td><img src="' . GW_UPLOADPATH . $fila['imagen'] . '" alt="Score image" /></td></tr>';
+    if (is_file(CARPETA . $fila['imagen']) && filesize(CARPETA . $fila['imagen']) > 0) {
+      echo '<td><img src="' . CARPETA . $fila['imagen'] . '" alt="Score image" /></td></tr>';
     }
     else {
-      echo '<td><img src="' . GW_UPLOADPATH . 'unverified.gif' . '" alt="Unverified score" /></td></tr>';
+      echo '<td><img src="' . CARPETA . 'unverified.gif' . '" alt="Unverified score" /></td></tr>';
     }
     $i++;
   }
