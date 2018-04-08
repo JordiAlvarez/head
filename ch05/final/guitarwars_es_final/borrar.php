@@ -47,7 +47,7 @@
       mysqli_close($dbc);
 
       // Confirmar que se ha borrado adecuadamente.
-      echo '<p>La puntuación de ' . $puntos . ' for ' . $nombre . ' ha sido borrada.';
+      echo '<p>La puntuación de ' . $puntos . ' de ' . $nombre . ' ha sido borrada.';
     }
     else {
       echo '<p class="error">No se han borrado los rankings.</p>';
