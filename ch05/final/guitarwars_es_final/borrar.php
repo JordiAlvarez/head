@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
-  <h2>Guitar Wars - Remove a High puntos</h2>
+  <h2>Guitar Wars - Borrar ranking</h2>
 
 <?php
   require_once('conexion.php');
@@ -28,46 +28,46 @@
     $puntos = $_POST['puntos'];
   }
   else {
-    echo '<p class="error">Sorry, no high puntos was specified for removal.</p>';
+    echo '<p class="error">Disculpa, no se ha borrado nada.</p>';
   }
 
   if (isset($_POST['submit'])) {
     if ($_POST['confirm'] == 'Yes') {
-      // Delete the screen shot image file from the server
+      // Borrar la imagen
       @unlink(CARPETA . $imagen);
 
-      // Connect to the database
+      // Connectar a la base de datos
       $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
   $id = $_POST['id'];
   $puntos = $_POST['puntos'];
   $nombre = $_POST['nombre'];
-      // Delete the puntos data from the database
+      // Borrar el ranking de la base de datos
       $consulta= "DELETE FROM guitarwars WHERE id = $id LIMIT 1";
       mysqli_query($dbc, $consulta);
       mysqli_close($dbc);
 
-      // Confirm success with the user
-      echo '<p>The high puntos of ' . $puntos . ' for ' . $nombre . ' was successfully removed.';
+      // Confirmar que se ha borrado adecuadamente.
+      echo '<p>La puntuación de ' . $puntos . ' for ' . $nombre . ' ha sido borrada.';
     }
     else {
-      echo '<p class="error">The high puntos was not removed.</p>';
+      echo '<p class="error">No se han borrado los rankings.</p>';
     }
   }
   else if (isset($id) && isset($nombre) && isset($fecha) && isset($puntos)) {
-    echo '<p>Are you sure you want to delete the following high puntos?</p>';
-    echo '<p><strong>Name: </strong>' . $nombre . '<br /><strong>fecha: </strong>' . $fecha .
+    echo '<p>Estás seguro de que quieres borrar estos rankings?</p>';
+    echo '<p><strong>Nombre: </strong>' . $nombre . '<br /><strong>fecha: </strong>' . $fecha .
       '<br /><strong>puntos: </strong>' . $puntos . '</p>';
     echo '<form method="post" action="borrar.php">';
     echo '<input type="radio" name="confirm" value="Yes" /> Si ';
     echo '<input type="radio" name="confirm" value="No" checked="checked" /> No <br />';
-    echo '<input type="submit" value="Submit" name="submit" />';
+    echo '<input type="submit" value="Borrar" name="submit" />';
     echo '<input type="hidden" name="id" value="' . $id . '" />';
     echo '<input type="hidden" name="nombre" value="' . $nombre . '" />';
     echo '<input type="hidden" name="puntos" value="' . $puntos . '" />';
     echo '</form>';
   }
 
-  echo '<p><a href="admin.php">&lt;&lt; Back to admin page</a></p>';
+  echo '<p><a href="admin.php">&lt;&lt; Volver a la página de administración</a></p>';
 ?>
 
 </body>
