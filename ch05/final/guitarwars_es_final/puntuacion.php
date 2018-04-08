@@ -33,17 +33,17 @@
             $consulta = "INSERT INTO guitarwars VALUES (0, NOW(), '$nombre', '$puntos', '$imagen')";
             mysqli_query($dbc, $consulta);
 
-            // Confirm success with the user
-            echo '<p>Thanks for adding your new high score! It will be reviewed and added to the high score list as soon as possible.</p>';
+            // Confirmas que se ha añadido al guitarrista
+            echo '<p>Gracias por añadir tu puntuación en breve te añadiremos al ranking.</p>';
             echo '<p><strong>Nombre:</strong> ' . $nombre . '<br />';
             echo '<strong> Puntos:</strong> ' . $puntos . '<br />';
             echo '<img src="' . GW_UPLOADPATH . $imagen . '" alt="Score image" /></p>';
-            echo '<p><a href="index.php">&lt;&lt; Back to high scores</a></p>';
+            echo '<p><a href="index.php">&lt;&lt; Volver al Ranking</a></p>';
 
             // Limpia los datos almacenados para limpiar el formulario
-            $name = "";
-            $score = "";
-            $screenshot = "";
+            $nombre = "";
+            $puntos = "";
+            $imagen = "";
 
             mysqli_close($dbc);
           }
@@ -53,11 +53,11 @@
         }
       }      else {        echo '<p class="error">The screen shot must be a GIF, JPEG, or PNG image file no greater than ' . (GW_MAXFILESIZE / 1024) . ' KB in size.</p>';      }
 
-      // Try to delete the temporary screen shot image file
-      @unlink($_FILES['screenshot']['tmp_name']);
+      // Intenta borrar el archivo temporal de la imagen
+      @unlink($_FILES['imagen']['tmp_name']);
     }
     else {
-      echo '<p class="error">Please enter all of the information to add your high score.</p>';
+      echo '<p class="error">Por favor introduce todos los datos para añadirte al ranking</p>';
     }
   }
 ?>
@@ -67,7 +67,7 @@
     <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo GW_MAXFILESIZE; ?>" />
     <label for="name">Nombre:</label>
     <input type="text" id="name" name="nombre" value="<?php if (!empty($nombre)) echo $nombre; ?>" /><br />
-    <label for="score">Score:</label>
+    <label for="score">Puntos:</label>
     <input type="text" id="score" name="puntos" value="<?php if (!empty($puntos)) echo $puntos; ?>" /><br />
     <label for="screenshot">Imagen:</label>
     <input type="file" id="screenshot" name="imagen" />
