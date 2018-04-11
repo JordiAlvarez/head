@@ -10,20 +10,31 @@
 
 <?php
   $from = "profepielagos@gmail.com";
+
   $asunto = $_POST['asunto'];
   $mensaje = $_POST['mensaje'];
 
-  $dbc = mysqli_connect('localhost', 'root', '', 'basedatos1')
-    or die('Error conectando a MySQL server.');
 
-  $query = "SELECT * FROM lista_emails";
-  $result = mysqli_query($dbc, $query)
+
+
+
+  $conexion = mysqli_connect('localhost', 'root', '', 'basedatos1') or die('Error conectando a MySQL server.');
+
+  $consulta = "SELECT * FROM emails";
+
+  $resultado = mysqli_query($conexion, $consulta)
     or die('Error conectando a base de datos.');
 
-  while ($fila = mysqli_fetch_array($result)){
+
+
+  while ($fila = mysqli_fetch_assoc($resultado)){
+    
     $to = $fila['email'];
     $nombre = $fila['nombre'];
     $apellido = $fila['apellido'];
+
+
+
     $msg = "Estimado $nombre $apellido,\n$mensaje";
     mail($to, $asunto, $msg, 'De:' . $from);
     echo 'Enviado email a: ' . $to . '<br />';
