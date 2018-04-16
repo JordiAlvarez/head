@@ -13,15 +13,22 @@
 Escribe y envía un correo a los miembros de la lista.</p>
 
 <?php
+
   if (isset($_POST['submit'])) {
     $from = 'profepielagos@gmail.com';
     $asunto = $_POST['asunto'];
     $mensaje = $_POST['mensaje'];
+
+    
     $output_form = false;
 
-    if (empty($asunto) && empty($mensaje)) {
+    if (empty($asunto) && empty($mensaje))
+
+     {
       // Sabemos que el asunto y el mensaje están en blanco
       echo 'Olvidó el asunto y el mensaje.<br />';
+
+
       $output_form = true;
     }
 
@@ -35,9 +42,7 @@ Escribe y envía un correo a los miembros de la lista.</p>
       $output_form = true;
     }
   }
-  else {
-    $output_form = true;
-  }
+ 
 
   if ((!empty($asunto)) && (!empty($mensaje))) {
     $dbc = mysqli_connect('localhost', 'root', '', 'basedatos1')

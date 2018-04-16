@@ -15,9 +15,6 @@
   $mensaje = $_POST['mensaje'];
 
 
-
-
-
   $conexion = mysqli_connect('localhost', 'root', '', 'basedatos1') or die('Error conectando a MySQL server.');
 
   $consulta = "SELECT * FROM emails";
