@@ -13,14 +13,14 @@
 Escribe y envía un correo a los miembros de la lista.</p>
 
 <?php
-
+ $mostrar_formulario = true;
   if (isset($_POST['submit'])) {
     $from = 'profepielagos@gmail.com';
     $asunto = $_POST['asunto'];
     $mensaje = $_POST['mensaje'];
 
     
-    $output_form = false;
+    $mostrar_formulario = false;
 
     if (empty($asunto) && empty($mensaje))
 
@@ -29,17 +29,17 @@ Escribe y envía un correo a los miembros de la lista.</p>
       echo 'Olvidó el asunto y el mensaje.<br />';
 
 
-      $output_form = true;
+      $mostrar_formulario = true;
     }
 
     if (empty($asunto) && (!empty($mensaje))) {
       echo 'Olvidó el asunto .<br />';
-      $output_form = true;
+      $mostrar_formulario = true;
     }
 
     if ((!empty($asunto)) && empty($mensaje)) {
       echo 'Olvidó el mensaje.<br />';
-      $output_form = true;
+      $mostrar_formulario = true;
     }
   }
  
@@ -64,14 +64,27 @@ Escribe y envía un correo a los miembros de la lista.</p>
     mysqli_close($dbc);
   }
 
-  if ($output_form) {
+  if ($mostrar_formulario) {
 
     // Añadimos validaciones isset para colocar los campos que ya han sido rellenados
 
 ?>
   <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
     <label for="subject">Asunto:</label><br />
-    <input id="subject" name="asunto" type="text" value="<?php if(isset ($_POST['asunto'])) {echo $asunto;}?>" size="30" /><br />
+
+    <input id="subject" name="asunto" type="text" 
+    value="<?php if(isset ($_POST['asunto'])) {echo $asunto;} ?>" 
+
+    size="30" /><br />
+
+
+
+
+
+
+
+
+    
     <label for="elvismail">Mensaje:</label><br />
     <textarea id="elvismail" name="mensaje" rows="8" cols="40" ><?php if(isset ($_POST['mensaje'])) {echo $mensaje;}?></textarea><br />
     <input type="submit" name="submit" value="Submit" />

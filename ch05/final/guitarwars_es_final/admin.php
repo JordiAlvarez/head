@@ -15,17 +15,17 @@
 require_once('constantes.php');
 require_once('conexion.php');
 
-  // Connect to the database
+  // Conectar a la base de datos
   $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
-  // Retrieve the score data from MySQL
+  // Recoger datos de la tabla guitarwars a través de SQL
   $consulta = "SELECT * FROM guitarwars ORDER BY puntos DESC, fecha ASC";
   $resultado = mysqli_query($dbc, $consulta);
 
-  // Loop through the array of score data, formatting it as HTML
+  // Colocando en una tabla el resultado de la consulta SQL
   echo '<table>';
   while ($fila= mysqli_fetch_array($resultado)) {
-    // Display the score data
+    // Mostrando fila tras fila
     echo '<tr class="scorerow"><td><strong>' . $fila['nombre'] . '</strong></td>';
     echo '<td>' . $fila['fecha'] . '</td>';
     echo '<td>' . $fila['puntos'] . '</td>';

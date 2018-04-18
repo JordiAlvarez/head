@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+<<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -30,7 +30,7 @@
   // Muestra checkboxes que elegir para borrar usuarios
   $consulta = "SELECT * FROM lista_emails";
   $resultado = mysqli_query($dbc, $consulta);
-  while ($fila = mysqli_fetch_array($resultado)) {
+  while ($fila = mysqli_fetch_assoc($resultado)) {
     echo '<input type="checkbox" value="' . $fila['id'] . '" name="todelete[]" />';
     echo $fila['nombre'];
     echo ' ' . $fila['apellido'];

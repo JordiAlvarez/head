@@ -17,13 +17,13 @@
 
 if(isset($_POST['submit'])) {
   
-$id=$_POST['id'];
+  $id=$_POST['id'];
 
-$conexion=mysqli_connect('localhost', 'root', '', 'basedatos1');
+  $conexion=mysqli_connect('localhost', 'root', '', 'basedatos1');
 
-$consulta2="DELETE FROM emails WHERE id='$id'";
+  $consulta2="DELETE FROM emails WHERE id='$id'";
 
-$resultado2=mysqli_query($conexion, $consulta2);
+  $resultado2=mysqli_query($conexion, $consulta2);
 
 }
 

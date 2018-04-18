@@ -16,16 +16,16 @@
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];
     $email = $_POST['email'];
-    $output_form = 'no';
+    $mostrar_formulario = 'no';
 
     if (empty($nombre) || empty($apellido) || empty($email)) {
       // We know at least one of the input fields is blank
       echo 'Por favor rellena todos los campos del formulario.<br />';
-      $output_form = 'yes';
+      $mostrar_formulario = 'yes';
     }
   }
   else {
-    $output_form = 'yes';
+    $mostrar_formulario = 'yes';
   }
 
   if (!empty($nombre) && !empty($apellido) && !empty($email)) {
@@ -41,7 +41,7 @@
     mysqli_close($dbc);
   }
 
-  if ($output_form == 'yes') {
+  if ($mostrar_formulario) {
 ?>
 
   <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
