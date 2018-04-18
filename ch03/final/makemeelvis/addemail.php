@@ -9,14 +9,14 @@
 <body>
 
 <?php
-  $dbc = mysqli_connect('data.makemeelvis.com', 'elmer', 'theking', 'elvis_store')
+  $dbc = mysqli_connect('localhost', 'root', '', 'basedatos1')
     or die('Error connecting to MySQL server.');
 
-  $first_name = $_POST['firstname'];
-  $last_name = $_POST['lastname'];
+  $nombre = $_POST['nombre'];
+  $apellido = $_POST['apellido'];
   $email = $_POST['email'];
 
-  $query = "INSERT INTO email_list (first_name, last_name, email)  VALUES ('$first_name', '$last_name', '$email')";
+  $query = "INSERT INTO lista_emails (nombre, apellido, email)  VALUES ('$nombre', '$apellido', '$email')";
   mysqli_query($dbc, $query)
     or die('Error querying database.');
 
