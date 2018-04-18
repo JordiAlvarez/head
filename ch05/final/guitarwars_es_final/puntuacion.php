@@ -14,7 +14,7 @@
   require_once('conexion.php');
 
   if (isset($_POST['submit'])) {
-    // Grab the score data from the POST
+    // Si se envia el formulario coge todos los valores
     $nombre = $_POST['nombre'];
     $puntos = $_POST['puntos'];
     $imagen = $_FILES['imagen']['name'];
@@ -22,8 +22,10 @@
     $imagen_size = $_FILES['imagen']['size'];
 
     if (!empty($nombre) && !empty($puntos) && !empty($imagen)) {
-      if ((($imagen_type == 'image/gif') || ($imagen_type == 'image/jpeg') || ($imagen_type == 'image/jpg') || ($imagen_type == 'image/png'))        && ($imagen_size > 0) && ($imagen_size <= SIZE)) {
-        if ($_FILES['imagen']['error'] == 0) {          // No hay errores entonces mueve la imagen a la carpeta
+      if ((($imagen_type == 'image/gif') || ($imagen_type == 'image/jpeg') || ($imagen_type == 'image/jpg') || ($imagen_type == 'image/png'))
+        && ($imagen_size > 0) && ($imagen_size <= SIZE)) {
+        if ($_FILES['imagen']['error'] == 0) {
+          // No hay errores entonces mueve la imagen a la carpeta
           $target = CARPETA . $imagen;
           if (move_uploaded_file($_FILES['imagen']['tmp_name'], $target)) {
             // Conexión base de datos
@@ -51,7 +53,10 @@
             echo '<p class="error">Sorry, there was a problem uploading your screen shot image.</p>';
           }
         }
-      }      else {        echo '<p class="error">The screen shot must be a GIF, JPEG, or PNG image file no greater than ' . (SIZE / 1024) . ' KB in size.</p>';      }
+      }
+      else {
+        echo '<p class="error">The screen shot must be a GIF, JPEG, or PNG image file no greater than ' . (SIZE / 1024) . ' KB in size.</p>';
+      }
 
       // Intenta borrar el archivo temporal de la imagen
       @unlink($_FILES['imagen']['tmp_name']);
@@ -71,7 +76,7 @@
     <input type="text" id="score" name="puntos" value="<?php if (!empty($puntos)) echo $puntos; ?>" /><br />
     <label for="screenshot">Imagen:</label>
     <input type="file" id="screenshot" name="imagen" />
-    <hr />
+    <br />
     <input type="submit" value="Enviar" name="submit" />
   </form>
 </body>
