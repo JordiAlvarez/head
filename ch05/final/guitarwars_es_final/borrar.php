@@ -22,7 +22,7 @@
     $imagen = $_GET['imagen'];
   }
   else if (isset($_POST['id']) && isset($_POST['nombre']) && isset($_POST['puntos'])) {
-    // Grab the puntos data from the POST
+    // Coger el ranking de la tabla
     $id = $_POST['id'];
     $nombre = $_POST['nombre'];
     $puntos = $_POST['puntos'];
