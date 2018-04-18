@@ -16,16 +16,16 @@
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];
     $email = $_POST['email'];
-    $mostrar_formulario = 'no';
+    $output_form = 'no';
 
     if (empty($nombre) || empty($apellido) || empty($email)) {
       // We know at least one of the input fields is blank
       echo 'Por favor rellena todos los campos del formulario.<br />';
-      $mostrar_formulario = 'yes';
+      $output_form = 'yes';
     }
   }
   else {
-    $mostrar_formulario = 'yes';
+    $output_form = 'no';
   }
 
   if (!empty($nombre) && !empty($apellido) && !empty($email)) {
@@ -41,16 +41,16 @@
     mysqli_close($dbc);
   }
 
-  if ($mostrar_formulario) {
+  if ($output_form == 'yes') {
 ?>
 
   <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
     <label for="firstname">Nombre:</label>
-    <input type="text" id="firstname" name="nombre" /><br />
+    <input type="text" id="firstname" name="nombre" value="<?php $nombre; ?>"/><br />
     <label for="lastname">Apellido:</label>
-    <input type="text" id="lastname" name="apellido" /><br />
+    <input type="text" id="lastname" name="apellido" value="<?php $apellido; ?>"/><br />
     <label for="email">Email:</label>
-    <input type="text" id="email" name="email" /><br />
+    <input type="text" id="email" name="email" value="<?php $email ?>"/><br />
     <input type="submit" name="submit" value="Enviar" />
   </form>
 

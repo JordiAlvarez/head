@@ -9,24 +9,15 @@
 <body>
 
 <?php
-<<<<<<< HEAD
-  $dbc = mysqli_connect('localhost', 'root', '', 'basedatos1')
-=======
   $conexion = mysqli_connect('localhost', 'root', '', 'basedatos1')
->>>>>>> 7c54a0e2644dfe0c939adc4270caacf91f809189
     or die('Error connecting to MySQL server.');
 
   $nombre = $_POST['nombre'];
   $apellido = $_POST['apellido'];
   $email = $_POST['email'];
 
-<<<<<<< HEAD
-  $query = "INSERT INTO lista_emails (nombre, apellido, email)  VALUES ('$nombre', '$apellido', '$email')";
-  mysqli_query($dbc, $query)
-=======
   $consulta = "INSERT INTO emails (nombre, apellido, email)  VALUES ('$nombre', '$apellido', '$email')";
   mysqli_query($dbc, $consulta)
->>>>>>> 7c54a0e2644dfe0c939adc4270caacf91f809189
     or die('Error querying database.');
 
   echo 'Cliente Añadido.';
