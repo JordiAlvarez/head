@@ -90,7 +90,7 @@ h1 {
 .rwd-table th, .rwd-table td:before {
   color: #dd5;
 }
-
+ img { width: 75px; }
 
 	</style>
 </head>
@@ -119,9 +119,9 @@ echo "<td>".$fila['autor']."</td>";
 echo "<td>".$fila['localizacion']."</td>";
 echo "<td>".$fila['categoria']."</td>";
 echo "<td>".$fila['fecha_publicacion']."</td>";
-echo "<td>".$fila['fecha_original']."</td>";
+echo "<td>".$fila['fecha']."</td>";
 
-echo "<td><img src='imagenes/".$fila['url']."'></td>";
+echo "<td><img src='http://localhost/head/Archivo-Fotografico/plantilla%201-Blend/imagenes/".$fila['url']."'></td>";
 
 echo "<td><a href='borrar-fotos.php?id=".$fila['id']."'>Borrar</a></td></tr>";
 

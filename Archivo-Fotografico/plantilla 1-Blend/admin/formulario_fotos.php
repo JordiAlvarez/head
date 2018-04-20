@@ -128,7 +128,7 @@ $nombre_img=$_FILES['imagen']['name'];
 $tipo=$_FILES['imagen']['type'];
 $tamano=$_FILES['imagen']['size'];
 
-if(($nombre_img==!NULL)&&($tamano<=200000))
+if(($nombre_img==!NULL)&&($tamano<=900000))
 {/*apertutra primer if*/
 
 if (($tipo=="image/gif")
@@ -139,7 +139,7 @@ if (($tipo=="image/gif")
 
 	{/*apertura segundo if*/
 
-$directorio=$_SERVER['DOCUMENT_ROOT'].'/SQL/fotos/imagenes/';
+$directorio=$_SERVER['DOCUMENT_ROOT'].'/head/Archivo-Fotografico/Plantilla 1-Blend/imagenes/';
 
 move_uploaded_file($_FILES['imagen']['tmp_name'], $directorio.$nombre_img);
 
@@ -169,7 +169,7 @@ move_uploaded_file($_FILES['imagen']['tmp_name'], $directorio.$nombre_img);
 
 $conexion = mysqli_connect('localhost','root','','basedatos1');
 
-$consulta="INSERT INTO fotos(titulo, descripcion, autor, localizacion, categoria, fecha_publicacion, fecha_original, url) 
+$consulta="INSERT INTO fotos(titulo, descripcion, autor, localizacion, categoria, fecha_publicacion, fecha, url) 
 
 values('".$titulo."', '".$descripcion."', '".$autor."', '".$localizacion."', '".$categoria."', '".$fecha_publicacion."', '".$fecha_original."', '".$nombre_img."')";
 
